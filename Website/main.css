@@ -1,0 +1,74 @@
+/* Colour variables */
+
+:root {
+	--darkgray: #202020;
+	--gray: #303030;
+	--white: #ffffff;
+	--lightgray: #d5d8dc;
+	--orange: #ff6600;
+	--lightblue: #33ccff;
+	--pink: #ba00ff;
+	--red: #ff0000;
+	--cyan: #00ffca;
+	--grasgreen: #5eff00;
+	--blue: #0056ff;
+	--yellow: #ffe000;
+}
+
+/* Body */
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: Consolas, 'Courier New', monospace;
+}
+
+/* Navbar */
+
+#navbar-nav {
+	list-style-type: none;
+	margin: 0;
+	padding: 30px;
+	text-align: right;
+}
+
+.nav-item {
+	display: inline;
+	padding: 0;
+	margin: -5px;
+}
+
+/* Links */
+
+.nav-link {
+	color: var(--darkgray);
+	font-size: 125%;
+	padding: 13px 13px 13px 13px;
+	text-decoration: none;
+}
+
+.link-red:hover {
+	border-bottom: 4px solid var(--red);
+	background-color: rgba(255, 0, 0, 0.1);
+}
+
+.nav-link:active {
+	color: var(--white);
+}
+
+.link-yellow:hover {
+	border-bottom: 4px solid var(--yellow);
+	background-color: rgba(255, 224, 0, 0.1);
+}
+.link-blue:hover {
+	border-bottom: 4px solid var(--blue);
+	background-color: rgba(0, 86, 255, 0.1);
+}
+.link-grasgreen:hover {
+	border-bottom: 4px solid var(--grasgreen);
+	background-color: rgba(94, 255, 0, 0.1);
+}
+.link-pink:hover {
+	border-bottom: 4px solid var(--pink);
+	background-color: rgba(186, 0, 255, 0.1);
+}
