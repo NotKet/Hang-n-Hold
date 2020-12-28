@@ -1,7 +1,7 @@
-MIT App Inventor:
-- Tutorial anschauen und kleine App kreieren
-Processing (for Android)
-Arduino mit Bluetooth: ESP32
-HC05 – Bluetooth:
-- Arduino mit Bluetooth testen
-- Mit BL-Transever
+- MIT App Inventor:
+  - Tutorial anschauen und kleine App kreieren
+- Processing (for Android)
+- Arduino mit Bluetooth: ESP32
+- HC05 – Bluetooth:
+  - Arduino mit Bluetooth testen
+  - Mit BL-Transever
