@@ -1,4 +1,4 @@
-MIT App Inventor>
+MIT App Inventor:
 - Tutorial anschauen und kleine App kreieren
 Processing (for Android)
 Arduino mit Bluetooth: ESP32
