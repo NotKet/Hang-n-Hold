@@ -1,1 +1,173 @@
-<mxfile host="app.diagrams.net" modified="2020-12-22T14:50:20.672Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.107 Safari/537.36" etag="Oo8d2DqivDI6ACvZCXiH" version="14.1.1" type="github"><diagram id="u70vDHpy1bNDIQnU0l4g" name="Page-1">7ZhNj5swEIZ/DcdU4Ts57mazW1XdSlVatdmbEybgCjCyhw3019cGE0AoEZVawSEXYF57jOfjwRKGvUmKF06y6JUFEBvWMigM+8mwrLXry6sSylpwHacWQk6DWjJbYUd/gxaXWs1pAKI3ERmLkWZ98cjSFI7Y0wjn7NyfdmJx/60ZCWEg7I4kHqo/aIBRra4sv9U/Ag2j5s2mt65HEtJM1pGIiATs3JHsrWFvOGNYPyXFBmKVuyYvtd/zldHLxjikOMZhFXx5+BR9e/u63XwX+2RRroL1okmzwLKJGAKZAG0yjhELWUribas+cpanAahll9Jq53xmLJOiKcVfgFjqapIcmZQiTGI9CgXFn8r9g6utfWfkqdArV0bZGCnysuOkzH13rHWrrMavjk8FdTVvWhIs50e4lSzdf4SHgDfmWZfqSiqAJSD3I/04xATpe38fRPdneJnXllA+6Cr+TUXrdd9JnOs37eSGcVDmtogq7+eIIuwyUsV/liT3C6bXBI5Q3E7jMGztYDu61fSHwNPmuaXKbFCJOkQ18/59osxBTu6tf7OlR7S+M2XrW4PWf+H0dAKpHeQGBEI6OwxMd3IO3DsHozlwRnLgTsmBM+DgDSguDNVWz/L6WMGQp6FIQAh5r6ovD4kZ8mE5k/Ph3/kYzYc7kg9vSj7c6+eEDHimB4VtTw7C6g7CaBC8kSD4U4LgDUB4rQ8E1f+qfQk/yJNjhjQ41tQ0+NdyJ0guQnJQXxOSn+T1Ictmlz/X/H/5k2b7V6Ma6/wasrd/AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-12-30T19:39:09.123Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.107 Safari/537.36" etag="LowIErykkbhKqXwv5Imj" version="14.1.2" type="github">
+  <diagram id="u70vDHpy1bNDIQnU0l4g" name="Page-1">
+    <mxGraphModel dx="1157" dy="658" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IpWgFy5anoYlp_P7QClt-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-1" target="IpWgFy5anoYlp_P7QClt-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-1" value="START" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="114" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="174" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-2" value="Geräte einschalten, LEDs beginnen zu blinken" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="114" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-28" value="Nein" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-8" target="IpWgFy5anoYlp_P7QClt-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="380" />
+              <mxPoint x="90" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-67" value="Ja" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-8" target="IpWgFy5anoYlp_P7QClt-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-8" value="Gerät 1 mit App verbunden?" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="114" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-9" target="IpWgFy5anoYlp_P7QClt-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-9" value="Kalibrierung" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="114" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-71" value="Ja" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-11" target="IpWgFy5anoYlp_P7QClt-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-74" value="Nein" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-11" target="IpWgFy5anoYlp_P7QClt-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="560" />
+              <mxPoint x="60" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-11" value="Gerät 2 mit App verbunden?" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="114" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-36" value="Wartemodus (Standby)" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="710" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-54" value="Ja" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-44" target="IpWgFy5anoYlp_P7QClt-51">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-92" value="Nein" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-44" target="IpWgFy5anoYlp_P7QClt-36">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="890" />
+              <mxPoint x="90" y="740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-44" value="Messung starten?" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="860" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-56" value="Ja" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-51" target="IpWgFy5anoYlp_P7QClt-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-93" value="Nein" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-51" target="IpWgFy5anoYlp_P7QClt-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="980" />
+              <mxPoint x="30" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-51" value="Verbindung zu beiden Geräten vorhanden?" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="950" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-76" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-55" target="IpWgFy5anoYlp_P7QClt-75">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-55" value="&lt;b&gt;Messvorgang&lt;/b&gt;; Anzeige auf App: &quot;Hänge dich an die Griffe, um die Messung zu starten.&quot;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="1040" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-64" value="" style="endArrow=classic;html=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="IpWgFy5anoYlp_P7QClt-44">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="174" y="830" as="sourcePoint" />
+            <mxPoint x="264" y="980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-65" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-36">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="530" as="sourcePoint" />
+            <mxPoint x="174" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-68" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-66" target="IpWgFy5anoYlp_P7QClt-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-66" value="LEDs auf Gerät 1 hören auf zu blinken" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-70" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-69" target="IpWgFy5anoYlp_P7QClt-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="174" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-69" value="LEDs auf Gerät 2 hören auf zu blinken" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-77" value="Ja" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-75" target="IpWgFy5anoYlp_P7QClt-55">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="1170" />
+              <mxPoint x="90" y="1075" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-79" value="Nein" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-75" target="IpWgFy5anoYlp_P7QClt-78">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-75" value="Misst der Sensor?&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="1140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-81" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-78" target="IpWgFy5anoYlp_P7QClt-80">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-78" value="Messung beendet" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="1230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-83" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-80" target="IpWgFy5anoYlp_P7QClt-82">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-80" value="Ausgabe auf App: &quot;Berechnungen werden vorgenommen.&quot;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="1320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-89" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-82" target="IpWgFy5anoYlp_P7QClt-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-82" value="Ausgabe der Werte auf App" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="1410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-90" value="Ja" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-88" target="IpWgFy5anoYlp_P7QClt-55">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="1530" />
+              <mxPoint x="60" y="1075" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-94" value="Nein" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IpWgFy5anoYlp_P7QClt-88" target="IpWgFy5anoYlp_P7QClt-36">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="174" y="1590" />
+              <mxPoint x="260" y="1590" />
+              <mxPoint x="260" y="740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IpWgFy5anoYlp_P7QClt-88" value="Erneute Messung?" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="114" y="1500" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
