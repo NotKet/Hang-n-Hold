@@ -6,7 +6,7 @@
 
 BluetoothSerial SerialBT;                                                         // Eine Instanz von "BluetoothSerial" mit dem Namen "SerialBT" erstellt
 
-const int led = 33;                                                                // Konstante integer variable mit dem Namen "led" und dem Wert 5
+const int led = 5;                                                                // Konstante integer variable mit dem Namen "led" und dem Wert 5
                                                                                   // wird erstellt
 char incomingChar;                                                                // Ein Character mit dem Namen "incomingChar" wird definiert
 
@@ -27,10 +27,10 @@ void loop() {                                                                   
 
   if(incomingChar == 'e') {                                                       // Abfrage, ob die Variable "incomingChar" gleich dem character 'e' kommt
     digitalWrite(led, HIGH);                                                      // Falls Abfrage zutrifft, wird die Variable "led" auf "HIGH" gestellt
-    SerialBT.println("Led ist an.");                                                // Ausgabe von Text in seriellen Monitor
+    Serial.println("Led ist an.");                                                // Ausgabe von Text in seriellen Monitor
   } else if(incomingChar == 'a') {                                                // Falls Abfrage nicht zutrifft, wird die weitere Bedingung gestellt, ob
                                                                                   // die Variable "incomingChar" gleich dem character 'a' kommt
     digitalWrite(led, LOW);                                                       // Falls Abfrage zutrifft, wird die Variable "led auf "HIGH" gestellt
-    SerialBT.println("Led ist aus.");                                               // Ausgabe von Text in seriellen Monitor
+    Serial.println("Led ist aus.");                                               // Ausgabe von Text in seriellen Monitor
   } 
 }
