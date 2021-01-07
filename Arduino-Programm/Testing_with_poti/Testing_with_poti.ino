@@ -84,5 +84,21 @@ void loop() {
     case 'm':
       measurement();
       break;
+
+    case 'b':
+      battery_status();
+      break;
+
+    case 'd':
+      date();
+      break;
+
+    case 'v':
+      arduino_version();
+      break;
+
+    case 'c':
+      calibration();
+      break;
   }
 }   
