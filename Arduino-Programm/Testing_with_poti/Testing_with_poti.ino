@@ -9,7 +9,7 @@
 // Initianlize Bluetooth
 
 #include "BluetoothSerial.h"
-#include "DateTime.h"
+#include "TimeLib.h"
 
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)             
 #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it    
@@ -22,7 +22,7 @@ BluetoothSerial SerialBT;
 // Declaring variables
 
 const long sensorPin = 34, ledPin = 33, interval = 1000;
-unsigned long sensor_value = 0, sensor_start_value = 0, previousMillis = 0;
+unsigned long sensor_value = 0, sensor_start_value = 0, previousMillis = 0, sum = 0;
 bool messung = false;
 
 char app_input;
@@ -39,7 +39,6 @@ void calibration() {
   }
 
   while(messung == true) {
-      
     sensor_value = analogRead(sensorPin);  
     SerialBT.println(sensor_value);
 
@@ -49,16 +48,23 @@ void calibration() {
       messung = false;
   }
 
-  for(int i=0; i >
+  for(int i=0; i < count; i+=1) {
+    
+  }
   messung = false;
 }
 
-void esp_version() {
-  
-}
-
 void current_date() {
-   
+   time_t t = now();
+   SerialBT.print(day(t));
+   SerialBT.print("-");
+   SerialBT.print(month(t));
+   SerialBT.print("-");
+   SerialBT.print(year(t));
+   SerialBT.print(",");
+   SerialBT.print(hour(t));
+   SerialBT.print(":");
+   SerialBT.print(minute(t));
 }
 
 //*******************************
@@ -82,9 +88,6 @@ void loop() {
     app_input = SerialBT.read();
   
     switch(app_input) {
-      case "v":
-        esp_version();
-        break;
   
       case "c":
         calibration();
