@@ -1,25 +1,26 @@
 /*
- * Date: 28.12.2020
- * Author: Maximilian Maier
- * Project: Hang'n Hold
- * Description: Outputting poti-values to the app       
- * 
+    Hang'n Hold
+
+    ====================
+
+    This program let's you connect two bluetooth devices (two microcontrollers with sensors) to measure and process the receiving values.
+    On the     
+
+    
+    Author: Maximlian Maier <maximilian.h.maier@gmail.com>
+     
 */
 
-// Initianlize Bluetooth
+// Initialize Bluetooth
 
-#include "BluetoothSerial.h"
-
-#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)             
-#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it    
-#endif  
+#include <BluetoothSerial.h>
 
 #define min_sensor_value 2000
 #define measure_interval 1000
 
 BluetoothSerial SerialBT;
 
-const long sensor1 = 34,sensor2 = 35, led = 33;
+const long sensorPin1 = 25,sensorPin2 = 26, ledPin = 33;
 unsigned long sensor1_value = 0, sensor1_start_value = 0, sensor2_value = 0, sensor2_start_value = 0, previousMillis = 0, sensor1_sum = 0, sensor2_sum = 0, sensor_sum_max = 0, sensor1_percentage = 0, sensor2_percentage = 0;
 bool measuring = false;
 
@@ -32,8 +33,8 @@ void measurement() {
   SerialBT.println("Messung wird gestartet. Bitte hänge dich nun an die Griffe ...");
 
   while(1) {
-    sensor1_start_value = analogRead(sensor1);
-    sensor2_start_value = analogRead(sensor2);
+    sensor1_start_value = analogRead(sensorPin1);
+    sensor2_start_value = analogRead(sensorPin2);
     
 
     if(sensor1_start_value >= min_sensor_value && sensor2_start_value >= min_sensor_value) {
@@ -43,18 +44,18 @@ void measurement() {
   }
 
   while(measuring == true) {
-    sensor1_value = analogRead(sensor1);
-    sensor2_value = analogRead(sensor2_value);
+    sensor1_value = analogRead(sensorPin1);
+    sensor2_value = analogRead(sensorPin2);
 
     sensor1_sum += sensor1_value;
     sensor2_sum += sensor2_value;
 
     if(sensor1_value < 200 && sensor2_value < 200) {
-      measure = false;
+      measuring = false;
     }
   }
 
-  sensor_sum_max = sensor1_sum + sensor2+sum;
+  sensor_sum_max = sensor1_sum + sensor2_sum;
 
   sensor1_percentage = (sensor_sum_max / sensor1_sum) * 100;
   sensor2_percentage = (sensor_sum_max / sensor2_sum) * 100;
@@ -65,20 +66,59 @@ void measurement() {
   SerialBT.println(sensor2_percentage);
 }
 
+void battery_status() {
+  
+}
 
-void setup() {
-  pinMode(ledPin, INPUT);
-  Serial.begin(115200);
-  SerialBT.begin("Hang'n Hold - 1");
+void arduino_version() {
+  
+}
+
+void date() {
+  
+}
+
+void calibration() {
+  
 }
 
 
-void loop() {
+void setup() {
+  pinMode(ledPin,OUTPUT);
+  Serial.begin(115200);
+  SerialBT.register_callback(callback);
+  if(!SerialBT.begin("Hang'n Hold - 1")) {
+    Serial.println("An error occurred initializing Bluetooth.");
+  } else {
+    Serial.println("Bluetooth initialized.");
+  }
+}
 
+
+void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param) {
+  // Callback function implementation
+
+   while(true) {
+    if (event == ESP_SPP_OPEN_EVT) {
+      Serial.println("Client connected!");
+      digitalWrite(ledPin, HIGH);
+      break;
+    }
+      
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+  }
+}
+
+void loop() {
+  
   if(SerialBT.available()) {
-    SerialBT.println("'v' - Version, 'd' - Date, 'c' - calibration.'");
+    SerialBT.println("'v' - Version, 'd' - Date, 'c' - Calibration, 'm' - Measurement, 'b' - Battery status.'");
     app_input = SerialBT.read();
   }
+ 
   
   switch(app_input) {
     case 'm':
