@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-const int piezoPin = 34;               
-
-void setup() {
-  pinMode(piezoPin, INPUT); 
-  Serial.begin(115200); 
-} 
-
-void loop() {    
-  Serial.println(analogRead(piezoPin)); 
-  delay(200); 
-=======
 #include "BluetoothSerial.h"
 #include "LedLib.h"
 
@@ -34,6 +22,22 @@ void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param){
   }
 } 
 
+void battery_status() {
+  
+}
+
+void arduino_version() {
+  
+}
+
+void date() {
+  
+}
+
+void calibration() {
+  
+} 
+
 void setup() {
   Serial.begin(115200);
   SerialBT.register_callback(callback);
@@ -48,5 +52,12 @@ void loop() {
   while(bt_connected != true) {
     ledlib.blink_once();
   }
->>>>>>> 88a934e6bec2ac2ade2e7e183ba74e72aa2dfaaa
 } 
+
+void setup() {
+  
+}
+
+void loop() {
+  
+}
