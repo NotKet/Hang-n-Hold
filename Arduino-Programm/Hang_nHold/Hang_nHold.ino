@@ -84,7 +84,7 @@ void setup()
 
 void loop() 
 {
-  while(bt_connected != true) 
+  while(!bt_connected) 
   {
     ledlib.blink_once();
   }
