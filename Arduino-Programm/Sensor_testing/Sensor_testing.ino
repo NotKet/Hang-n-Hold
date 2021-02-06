@@ -1,13 +1,17 @@
-#include "BluetoothSerial.h"
 #include "LedLib.h"
+#include "BluetoothSerial.h"
+#include "EEPROM.h"
+
+#define EEPROM_SIZE 1
+#define sm_value 115200
 
 BluetoothSerial SerialBT;
 
-const long sensorPin = 35, ledPin = 22;              
-unsigned long sensor_value = 0;
+const long sensorPin = 35, ledPin = 22, sensor1_value = 0, sensor2_value = 0;              
+unsigned long sensor_value = 0, ledstate = HIGH;
 boolean bt_connected = false;
 
-LedLib ledlib(ledPin);
+LedLib ll(ledPin);
 
 void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
 {
@@ -15,8 +19,11 @@ void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
   {
     Serial.println("Client connected.");
     bt_connected = true;
-    ledlib.led_on();
+    ll.led_on();
+    EEPROM.write(0, );
+    EEPROM.commit();
   } 
+  
   if(event == ESP_SPP_CLOSE_EVT) 
   {
     Serial.println("Client disconnected.");
@@ -24,22 +31,29 @@ void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param)
   }
 }
 
+
 void setup() 
 {
-  pinMode(ledPin, OUTPUT);
-  Serial.begin(115200);
+  Serial.begin(sm_value);
   SerialBT.register_callback(callback);
-  SerialBT.begin("Sensortest");
+
+  pinMode(ledPin, OUTPUT);
+  EEPROM.begin(EEPROM_SIZE)
+  
+  if(!SerialBT.begin("Sensortest")) {
+    Serial.println("An error ocurred initializing Bluetooth");
+  } else {
+    Serial.println("Bluetooth initialized");
+  }
+
+  ledstate = EEPROM.read(0)
 } 
+
 
 void loop() 
 { 
-  while(!bt_connected)
+  if(!bt_connected)
   {
-    ledlib.blink_once();
-  }
-    
-  sensor_value = analogRead(sensorPin);
-  SerialBT.println(sensor_value);
-  delay(1000);
+    ll.led_blink();
+  } 
 } 

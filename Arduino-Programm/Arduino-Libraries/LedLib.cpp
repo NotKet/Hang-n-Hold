@@ -27,8 +27,5 @@ void LedLib::blink_once() {
 }
 
 void LedLib::led_on() {
-    if(_pin == LOW) {
-        digitalWrite(_pin, HIGH);
-    } 
-    digitalWrite(_pin, HIGH); 
+    digitalWrite(_pin, HIGH);
 }
