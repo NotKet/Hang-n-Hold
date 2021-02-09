@@ -7,6 +7,7 @@
 #define min_start_value 1000
 
 BluetoothSerial SerialBT;
+Pangodream_18650_CL BL;
 
 const long sensorPins[] = {34, 35}, ledPin = 22;               
 
@@ -86,7 +87,7 @@ void measurement()
 void mc_battery_status() 
 {
   Serial.print("Value from pin: ");
-  Serial.println(analogRead(33s));
+  Serial.println(analogRead(33));
   Serial.print("Average value from pin: ");
   Serial.println(BL.pinRead());
   Serial.print("Volts: ");
@@ -103,38 +104,36 @@ void firmware_version()
 
 void calibration() 
 {
-  measuring = true;
-  unsigned long sensor1_values[100], sensor2_values[100];
-  unsigned long sensor1_start_value = 0, sensor2_start_value = 0, sensor1_sum = 0, sensor2_sum = 0;
-  
-  SerialBT.println("Kalibrierung wurde gestartet.");
-  SerialBT.println("Es werden nun 10 Kalibrierungs-messungen durchführt.");
-  SerialBT.println("Bitte hänge dich nun an die Griffe...");
-  
-  while(measuring) 
-  {
-    sensor1_start_value = analogRead(sensorPins[0]);
-    sensor2_start_value = analogRead(sensorPins[1]);
-    
-    if(sensor1_start_value >= min_start_value && sensor2_start_value >= min_start_value)
-    {
-      for(int j=0; j<10; j+=1) 
-      {
-        sensor1_values[j] = analogRead(sensorPins[0]);
-        sensor2_values[j] = analogRead(sensorPins[1]);
-        
-        if(sensor1_values[j] <= min_start_value && sensor2_values[j] <= min_start_value) 
-        {
-          measuring = false;
-          break;
-        }
-        delay(1000);
-      }
-    }
-    delay(1000);
-  }
-  SerialBT.println(sensor1_values);
-  SerialBT.println(sensor2_values);
+//  measuring = true;
+//  unsigned long sensor1_values[100], sensor2_values[100];
+//  unsigned long sensor1_start_value = 0, sensor2_start_value = 0, sensor1_sum = 0, sensor2_sum = 0;
+//  
+//  SerialBT.println("Kalibrierung wurde gestartet.");
+//  SerialBT.println("Es werden nun 10 Kalibrierungs-messungen durchführt.");
+//  SerialBT.println("Bitte hänge dich nun an die Griffe...");
+//  
+//  while(measuring) 
+//  {
+//    sensor1_start_value = analogRead(sensorPins[0]);
+//    sensor2_start_value = analogRead(sensorPins[1]);
+//    
+//    if(sensor1_start_value >= min_start_value && sensor2_start_value >= min_start_value)
+//    {
+//      for(int j=0; j<10; j+=1) 
+//      {
+//        sensor1_values[j] = analogRead(sensorPins[0]);
+//        sensor2_values[j] = analogRead(sensorPins[1]);
+//        
+//        if(sensor1_values[j] <= min_start_value && sensor2_values[j] <= min_start_value) 
+//        {
+//          measuring = false;
+//          break;
+//        }
+//        delay(1000);
+//      }
+//    }
+//    delay(1000);
+//  }
 } 
 
 void setup() 
@@ -161,7 +160,7 @@ void loop()
   {
     switch(SerialBT.read()) 
     {
-      case: 's':
+      case 's':
         start_msg();
         break;
        
