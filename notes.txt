@@ -1,0 +1,15 @@
+Hang'n Hold
+
+Stromversorgungsproblem:
+	Mögliche Lösungen: 
+		- größere battery 
+		- größere stepup-converter nicht
+
+		3,3v netzteil ausprobieren
+
+		47uF Low ESR (z.B. Tantal) Elko nah an VDD/VSS
+		Wenn nicht besser, parallel zu VDD/VSS großes Elko, etwa 1000uF
+
+		-> fast wie kleine Battery
+
+

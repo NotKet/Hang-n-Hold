@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+const int piezoPin = 34;               
+
+void setup() {
+  pinMode(piezoPin, INPUT); 
+  Serial.begin(115200); 
+} 
+
+void loop() {    
+  Serial.println(analogRead(piezoPin)); 
+  delay(200); 
+=======
+#include "BluetoothSerial.h"
+=======
+>>>>>>> aa8f16cfbc70348c8436f6142acd07806d39a6e7
 #include "LedLib.h"
 #include "BluetoothSerial.h"
 
@@ -37,6 +53,13 @@ void setup()
   SerialBT.begin("Sensortesting");
 } 
 
+<<<<<<< HEAD
+void loop() {   
+  while(bt_connected != true) {
+    ledlib.blink_once();
+  }
+>>>>>>> 88a934e6bec2ac2ade2e7e183ba74e72aa2dfaaa
+=======
 
 void loop() 
 { 
@@ -44,4 +67,5 @@ void loop()
   {
     ll.led_blink();
   } 
+>>>>>>> aa8f16cfbc70348c8436f6142acd07806d39a6e7
 } 
