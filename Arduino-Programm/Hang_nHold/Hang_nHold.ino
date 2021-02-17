@@ -2,18 +2,20 @@
 #include "BluetoothSerial.h"
 #include "LedLib.h"
 
-#define min_sensor_value 2000
 #define fw_version 1.00
-#define min_start_value 1000
+
 
 BluetoothSerial SerialBT;
 Pangodream_18650_CL BL;
 
-const long sensorPins[] = {34, 35}, ledPin = 22;               
+const long sensorPin[] = {34, 35}, ledPin = 22;               
 
 boolean bt_connected = false, measuring = false;
 
+const unsigned long min_sensor_value = 2000;
+
 LedLib ledlib(ledPin);
+
 
 void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param){
   if(event == ESP_SPP_SRV_OPEN_EVT){
@@ -31,26 +33,44 @@ void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param){
 void measurement() 
 {
   int i = 0;
-  measuring = true;
+  measuring = false;
   unsigned long sensor1_values[100], sensor2_values[100];
-  unsigned long sensor1_start_value = 0, sensor2_start_value = 0, sensor1_sum = 0, sensor2_sum = 0, sensor_sum = 0,average = 0, percentage_module1 = 0, percentage_module2 = 0;
+  unsigned long sensor1_start_value, sensor2_start_value, sensor1_sum, sensor2_sum, sensor_sum,average, percentage_module1, percentage_module2;
   
   SerialBT.println("Messung wurde gestartet.");
   SerialBT.println("Bitte hänge dich nun an die Griffe...");
   
   while(measuring) 
   {
-    sensor1_start_value = analogRead(sensorPins[0]);
-    sensor2_start_value = analogRead(sensorPins[1]);
+    sensor1_start_value = analogRead(sensorPin[0]);
+    sensor2_start_value = analogRead(sensorPin[1]);
+
+    SerialBT.print("Sensor 1: ");
+    SerialBT.println(sensor1_start_value);
+    SerialBT.print("Sensor 2: ");
+    SerialBT.println(sensor2_start_value);
+    SerialBT.println("");
+
   
-    if(sensor1_start_value >= min_start_value && sensor2_start_value >= min_start_value) 
+    if(sensor1_start_value >= min_sensor_value && sensor2_start_value >= min_sensor_value) 
     {
+      SerialBT.println("Starting the measurement.");
+      SerialBT.println("");
+      
       while(1) 
       {
-        sensor1_values[i] = analogRead(sensorPins[0]);
-        sensor2_values[i] = analogRead(sensorPins[1]);
+        sensor1_values[i] = analogRead(sensorPin[0]);
+        sensor2_values[i] = analogRead(sensorPin[1]);
+
+        SerialBT.print("i: ");
+        SerialBT.println(i);
+        SerialBT.print("Sensor 1: ");
+        SerialBT.println(sensor1_values[i]);
+        SerialBT.print("Sensor 2: ");
+        SerialBT.println(sensor2_values[i]);
+        SerialBT.println("");
         
-        if(sensor1_values[i] <= min_start_value && sensor2_values[i] <= min_start_value) 
+        if(sensor1_values[i] <= min_sensor_value && sensor2_values[i] <= min_sensor_value) 
         {
           break;
           measuring = false;
@@ -80,8 +100,7 @@ void measurement()
   SerialBT.print("Prozentsatz Modul 1: ");
   SerialBT.println(percentage_module1);
   SerialBT.print("Prozentsatz Modul 2: ");
-  SerialBT.println(percentage_module2);
-  
+  SerialBT.println(percentage_module2); 
 }
 
 void mc_battery_status() 
@@ -104,36 +123,32 @@ void firmware_version()
 
 void calibration() 
 {
-//  measuring = true;
-//  unsigned long sensor1_values[100], sensor2_values[100];
-//  unsigned long sensor1_start_value = 0, sensor2_start_value = 0, sensor1_sum = 0, sensor2_sum = 0;
-//  
-//  SerialBT.println("Kalibrierung wurde gestartet.");
-//  SerialBT.println("Es werden nun 10 Kalibrierungs-messungen durchführt.");
-//  SerialBT.println("Bitte hänge dich nun an die Griffe...");
-//  
-//  while(measuring) 
-//  {
-//    sensor1_start_value = analogRead(sensorPins[0]);
-//    sensor2_start_value = analogRead(sensorPins[1]);
-//    
-//    if(sensor1_start_value >= min_start_value && sensor2_start_value >= min_start_value)
-//    {
-//      for(int j=0; j<10; j+=1) 
-//      {
-//        sensor1_values[j] = analogRead(sensorPins[0]);
-//        sensor2_values[j] = analogRead(sensorPins[1]);
-//        
-//        if(sensor1_values[j] <= min_start_value && sensor2_values[j] <= min_start_value) 
-//        {
-//          measuring = false;
-//          break;
-//        }
-//        delay(1000);
-//      }
-//    }
-//    delay(1000);
-//  }
+  SerialBT.println("Type 'o' to end calibration.");
+  SerialBT.println();
+
+  unsigned long startTime = millis();
+  unsigned long endTime = 0;
+  
+  while(1) 
+  {
+    SerialBT.print("Sensor 1: ");
+    SerialBT.println(analogRead(sensorPin[0]));
+    SerialBT.print("Sensor 2: ");
+    SerialBT.println(analogRead(sensorPin[1]));
+    SerialBT.println("");
+
+    delay(1000);
+
+    if(SerialBT.available()) 
+    {
+      if(SerialBT.read() == 'o') 
+      {
+        endTime = millis() - startTime;
+        SerialBT.println(endTime);
+        break;
+      }
+    }
+  }
 } 
 
 void setup() 
@@ -155,7 +170,6 @@ void loop()
   {
     ledlib.led_blink();
   }
-  
   if(SerialBT.available()) 
   {
     switch(SerialBT.read()) 
