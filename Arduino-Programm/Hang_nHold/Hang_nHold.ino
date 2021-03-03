@@ -8,7 +8,7 @@
 BluetoothSerial SerialBT;
 Pangodream_18650_CL BL;
 
-const long sensorPin[] = {34, 35}, ledPin = 22;               
+const long sensorPin[] = {34, 35}, ledPin = 22, otherPins = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 23, 25, 26, 27, 32, 33, 36, 39];               
 
 boolean bt_connected = false, measuring = false;
 
@@ -154,6 +154,12 @@ void calibration()
 void setup() 
 {
   pinMode(ledPin, OUTPUT);
+
+  for(int i=0; i<sizeof(otherPins); i++) {
+    pinMode(otherPins[i], OUTPUT);
+    digitalWrite(otherPins[i], LOW); 
+  }
+  
   Serial.begin(115200);
   SerialBT.register_callback(callback);
   SerialBT.begin("Hang'n Hold - Modul 1");
@@ -168,7 +174,7 @@ void loop()
 {
   while(!bt_connected) 
   {
-    ledlib.led_blink();
+    ledlib.blink_once();
   }
   if(SerialBT.available()) 
   {
