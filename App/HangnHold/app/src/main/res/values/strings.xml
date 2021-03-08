@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Hang\'n Hold</string>
+    <string name="btn_send_msg">Send</string>
+    <string name="btn_bt_module1">Connect to Module 1</string>
+    <string name="btn_bt_module2">Connect to Module 2</string>
+    <string name="console_msg">Write to console</string>
+</resources>
