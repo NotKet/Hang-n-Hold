@@ -144,7 +144,7 @@ void calibration()
       if(SerialBT.read() == 'o') 
       {
         endTime = millis() - startTime;
-        SerialBT.println(endTime);
+        SerialBT.println(endTime/1000);
         break;
       }
     }
@@ -160,7 +160,7 @@ void setup()
 //    digitalWrite(otherPins[j], LOW); 
 //  }
   
-  Serial.begin(115200);
+  Serial.begin(9600);
   SerialBT.register_callback(callback);
   SerialBT.begin("Hang'n Hold - Modul 1");
 }
