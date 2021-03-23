@@ -9,129 +9,116 @@ import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
-import android.content.IntentFilter;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Set;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private static final int REQUEST_ENABLE_BT = 1;
 
-    private BluetoothAdapter bluetoothAdapter = null;
-    private Button btn_module1, btn_module2, btn_measurement, btn_calibration;
-    private TextView tv_name, tv_mac;
-    private ListView lvNewDevices;
-    private ArrayList arrayList;
-    private ArrayAdapter arrayAdapter;
+    private static final UUID MY_UUID = UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
 
+    private LinearLayout btn_module1, btn_module2, btn_measure, btn_calibrate;
+    private TextView btn_module1_text, btn_module2_text, btn_measure_text, btn_calibrate_text;
+    private BluetoothAdapter bluetoothAdapter;
 
-
-    private void init() {
-        btn_module1 = (Button) findViewById(R.id.btn_module1);
-        btn_module2 = (Button) findViewById(R.id.btn_module2);
-        btn_measurement = (Button) findViewById(R.id.btn_measurement);
-        btn_calibration = (Button) findViewById(R.id.btn_calibration);
-
-        tv_name = (TextView) findViewById(R.id.tv_name);
-        tv_mac = (TextView) findViewById(R.id.tv_mac);
-
-        lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
-
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        arrayList = new ArrayList();
-        arrayAdapter= new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, arrayList);
-        lvNewDevices.setAdapter(arrayAdapter);
-
-        log("Everything initialized");
-    }
-
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        checkBtPermissions();
         init();
+        //filters();
+        onClicks();
         enableBt();
+    }
 
+    /*
+    public void filters() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        this.registerReceiver(broadcastReceiver, filter);
+    }
+     */
+
+    private void init() {
+
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        btn_module1 = findViewById(R.id.btn_module1);
+        btn_module2 = findViewById(R.id.btn_module2);
+        btn_measure = findViewById(R.id.btn_measure);
+        btn_calibrate = findViewById(R.id.btn_calibrate);
+
+
+        /*
+        btn_module1_text = findViewById(R.id.btn_module1_text);
+        btn_module2_text = findViewById(R.id.btn_module2_text);
+        btn_measure_text = findViewById(R.id.btn_measure_text);
+        btn_calibrate_text = findViewById(R.id.btn_calibrate_text);
+
+        tv_name = (TextView) findViewById(R.id.tv_name);
+        tv_mac = (TextView) findViewById(R.id.tv_mac);
+        */
+        log("Everything initialized");
+    }
+
+    public void onClicks() {
         btn_module1.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
             public void onClick(View v) {
-                //listPairedDevices();
-                discoverDevices();
+                if(bluetoothAdapter.isEnabled()) {
+                    toast("Pressed btn_module1");
+                    Intent intent = new Intent(MainActivity.this, ListDevices.class);
+                    startActivity(intent);
+                } else {
+                    enableBt();
+                }
+            }
+        });
+
+        btn_module2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        btn_measure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        btn_calibrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void discoverDevices() {
-        if(bluetoothAdapter.isEnabled()) {
-            if(!bluetoothAdapter.isDiscovering()) {
-                bluetoothAdapter.startDiscovery();
-
-                IntentFilter filter = new IntentFilter();
-
-                filter.addAction(BluetoothDevice.ACTION_FOUND);
-                filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
-                filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-
-                registerReceiver(broadcastReceiver, filter);
-            }
-        } else {
-            toast("Turn on Bluetooth");
-        }
-    }
-
-    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-
-            if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
-                log("Discovery started");
-            } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                log("Discovery finished");
-            } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-
-                arrayList.add(device.getName() + "\n" + device.getAddress());
-                arrayAdapter.notifyDataSetChanged();
-
-                toast("Found device " + device.getName());
-            }
-        }
-    };
-
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(broadcastReceiver);
-    }
-
-    public void listPairedDevices() {
-        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
-        if (pairedDevices.size() > 0) {
-            for(BluetoothDevice device : pairedDevices) {
-                String deviceName = device.getName();
-                String macAddress = device.getAddress();
-
-                tv_name.append(deviceName + "\n");
-                tv_mac.append(macAddress + "\n");
-            }
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
