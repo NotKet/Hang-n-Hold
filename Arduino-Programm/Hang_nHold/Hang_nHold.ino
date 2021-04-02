@@ -1,5 +1,4 @@
 #include "LedLib.h"
-#include "Pangodream_18650_CL.h"
 #include "BluetoothSerial.h"
 
 BluetoothSerial SerialBT;
@@ -12,12 +11,11 @@ const long otherPins[] = {
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
   14, 15, 16, 17, 18, 19, 21, 23, 25, 26, 27, 32, 
   33, 36, 39
-  };   
-
+  };
+  
 LedLib ledlib(ledPin);
-Pangodream_18650_CL BL;
 
-bool deviceConnected = false, oldDeviceConnected = false, measuring;
+bool deviceConnected = false, oldDeviceConnected = false, measuring = false;
 
 void start_msg() {
   SerialBT.println(
@@ -45,77 +43,80 @@ void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param){
 
 
 void measurement() {
-  Serial.println("Start measuring");
-  int i = 0;
+  float sensor1_values[100], sensor2_values[100];
+
+  float sensor1_start_value, sensor2_start_value, 
+        sensor1_sum, sensor2_sum, sensor_sum, average, 
+        percentage_module1, percentage_module2,
+        endTime, startTime, temp1, temp2;
+
+
+  SerialBT.println("\nStart measuring\n");
+  int cnt = 0;
   measuring = true;
-  unsigned long sensor1_values[100], sensor2_values[100];
-  unsigned long sensor1_start_value, sensor2_start_value, 
-      sensor1_sum, sensor2_sum, sensor_sum, average, 
-      percentage_module1 = 0, percentage_module2 = 0;
-  unsigned long endTime = 0, startTime;
 
   while(measuring) {
     sensor1_start_value = analogRead(sensorPin[0]);
     sensor2_start_value = analogRead(sensorPin[1]);
   
     if(sensor1_start_value > min_sensor_value && sensor2_start_value > min_sensor_value) {
+      SerialBT.println("\nMeasuring ...\n");
       startTime = millis();
-      Serial.println("Measuring ...");
       
       while(1) {
-        sensor1_values[i] = analogRead(sensorPin[0]);
-        sensor2_values[i] = analogRead(sensorPin[1]);
-        i++;
+        temp1 = analogRead(sensorPin[0]);
+        temp2 = analogRead(sensorPin[1]);
         
-        if(sensor1_values[i] < min_sensor_value && sensor2_values[i] < min_sensor_value) {
-          endTime = (millis() - startTime); // / 1000;
+        if(temp1 < min_sensor_value || temp2 < min_sensor_value) {
+          endTime = (millis() - startTime) / 1000;
           measuring = false;
           break;
         }
+
+        sensor1_values[cnt] = temp1;
+        sensor2_values[cnt] = temp2;
+
+        cnt++;
      
-        delay(1000);
+        delay(500);
       }  
     }
-    delay(1000);
   }
   
-  for(int y=0; y<i; y++) {
+  for(int y=0; y<=cnt; y++) {
     sensor1_sum += sensor1_values[y];
     sensor2_sum += sensor2_values[y];
   }
-
-  Serial.println(sensor1_sum),
-  Serial.println(sensor2_sum);
-  
   
   sensor_sum = sensor1_sum + sensor2_sum;
-
-  Serial.println(sensor_sum);
-
-  average = sensor_sum / (2*i);
+  average = sensor_sum / (2*cnt);
   percentage_module1 = (sensor1_sum / sensor_sum) * 100;
   percentage_module2 = (sensor2_sum / sensor_sum) * 100;
-  
-  Serial.print("Average: ");
-  Serial.println(average);
-  Serial.print("Percentage1: ");
-  Serial.println(percentage_module1);
-  Serial.print("Percentage2: ");
-  Serial.println(percentage_module2); 
-  Serial.print("Time: ");
-  Serial.println(endTime);
 
-  Serial.println("Measurement finished");
+  SerialBT.print("\nAverage: ");
+  SerialBT.println(average);
+  SerialBT.print("Module 1: ");
+  SerialBT.print(percentage_module1);
+  SerialBT.println("%");
+  SerialBT.print("Module 2: ");
+  SerialBT.print(percentage_module2); 
+  SerialBT.println("%");
+  SerialBT.print("Time: ");
+  SerialBT.print(endTime);
+  SerialBT.println("s");
+  
+  SerialBT.println("\nMeasurement finished\n");
 }
+
 
 void firmware_version() {
   SerialBT.println(fw_version);
 } 
 
 void calibration() {
+  float sensor1_value, sensor2_value;
+
   Serial.println("Start calibrating");
-  
-  unsigned long sensor1_value, sensor2_value;
   
   while(1) {
     sensor1_value = analogRead(sensorPin[0]);
@@ -139,19 +140,6 @@ void calibration() {
   }
 } 
 
-void mc_battery_status() {
-  Serial.print("Value from pin: ");
-  Serial.println(analogRead(34));
-  Serial.print("Average value from pin: ");
-  Serial.println(BL.pinRead());
-  Serial.print("Volts: ");
-  Serial.println(BL.getBatteryVolts());
-  Serial.print("Charge level: ");
-  Serial.println(BL.getBatteryChargeLevel());
-  Serial.println("");
-  delay(1000);
-}
-
 void setup() {
   pinMode(ledPin, OUTPUT);
   Serial.begin(115200);
@@ -163,7 +151,7 @@ void loop() {
   while(!deviceConnected) {
     ledlib.blink_once();
   }
-  
+    
   if(SerialBT.available()) {
     char state = SerialBT.read();
 
@@ -178,10 +166,6 @@ void loop() {
 
     case 'v':
       firmware_version();
-      break;
-
-    case 'b':
-      mc_battery_status();
       break;
 
     default:
